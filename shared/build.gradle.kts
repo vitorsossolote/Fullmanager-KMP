@@ -11,7 +11,7 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     listOf(
         iosArm64(),
         iosSimulatorArm64()
@@ -21,11 +21,40 @@ kotlin {
             isStatic = true
         }
     }
-    
+
     sourceSets {
-        commonMain.dependencies {
-            // put your Multiplatform dependencies here
+        val commonMain by getting {
+            dependencies {
+                implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.ktor.client.content.negotiation)
+                implementation(libs.ktor.serialization.kotlinx.json)
+                implementation(libs.koin.core)
+            }
         }
+
+        val androidMain by getting {
+            dependencies {
+                implementation(libs.ktor.client.okhttp)
+                implementation(libs.koin.android)
+                implementation(libs.koin.androidx.compose)
+            }
+        }
+
+        val iosMain by creating {
+            dependsOn(commonMain)
+            dependencies {
+                implementation(libs.ktor.client.darwin)
+            }
+        }
+
+        /*val iosArm64Main by getting {
+            dependsOn(iosMain)
+        }
+
+        val iosSimulatorArm64Main by getting {
+            dependsOn(iosMain)
+        }*/
+
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
