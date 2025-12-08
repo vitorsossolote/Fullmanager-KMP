@@ -7,3 +7,5 @@ class DefaultDispatcherProvider: DispatcherProvider {
     override val IO = Dispatchers.Default
     override val Default = Dispatchers.Default
 }
+
+expect fun createDispatchers(): DispatcherProvider

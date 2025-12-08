@@ -6,20 +6,26 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.fullmanager.app.infrastructure.di.appModule
+import com.fullmanager.app.infrastructure.di.coreModule
+import com.fullmanager.app.infrastructure.di.dispatchersModule
+import com.fullmanager.app.infrastructure.di.networkModule
+import com.fullmanager.app.src.presentation.navigation.AppNavigation
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
 
+        startKoin {
+            androidContext(this@MainActivity)
+            modules(appModule, networkModule, coreModule, dispatchersModule)
+        }
+
         setContent {
-            App()
+            AppNavigation()
         }
     }
-}
-
-@Preview
-@Composable
-fun AppAndroidPreview() {
-    App()
 }
