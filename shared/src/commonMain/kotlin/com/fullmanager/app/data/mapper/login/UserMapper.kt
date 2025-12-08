@@ -4,11 +4,10 @@ import com.fullmanager.app.data.dto.login.LoginResponse
 import com.fullmanager.app.domain.model.user.User
 
 fun LoginResponse.toDomain(): User {
-    val mappedUser = User(
-        id = this.data.id_usuario.toInt(),
-        name = this.data.nome_usuario,
-        email = this.data.email_usuario
+    val result = this.data!!.result
+    return User(
+        id = result.id_usuario.toInt(),
+        name = result.nome_usuario,
+        email = result.email_usuario
     )
-
-    return mappedUser
 }

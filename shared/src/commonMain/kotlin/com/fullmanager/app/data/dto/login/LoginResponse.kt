@@ -3,8 +3,16 @@ package com.fullmanager.app.data.dto.login
 @kotlinx.serialization.Serializable
 data class LoginResponse(
     val status: Boolean,
+    val message: String? = null,
+    val error: String? = null,
+    val data: LoginDataWrapper? = null,
+)
+
+@kotlinx.serialization.Serializable
+data class LoginDataWrapper(
+    val status: Boolean,
     val message: String,
-    val data: LoginDataResponse,
+    val result: LoginDataResponse
 )
 
 @kotlinx.serialization.Serializable

@@ -20,14 +20,14 @@ actual fun createHttpClient() = HttpClient(OkHttp) {
             ignoreUnknownKeys = true
             prettyPrint = true
             isLenient = true
+            coerceInputValues = true
         })
     }
 
     install(DefaultRequest) {
         url("https://ws.fullmanager.me/")
-
-        header("X-API-KEY", "fullM2MwsdE456sdfSdfSdfddsaDdsDsddGrzj0N")
-        header("X-SECRET-KEY", "Ws35HgtfdRe79HMds46hDGO467fdf78kKlFm34r7")
+        header("secret-key", "Ws35HgtfdRe79HMds46hDGO467fdf78kKlFm34r7")
+        header("api-key", "fullM2MwsdE456sdfSdfSdfddsaDdsDsddGrzj0N")
         header("Accept", "application/json")
     }
 }

@@ -23,10 +23,11 @@ class AuthRepositoryImpl(
             println("Response da api:")
             println(response)
 
-            if (response.data.id_usuario.isNotBlank()){
+            if (response.status && response.data?.result?.id_usuario?.isNotBlank() == true){
                 Resource.Success(response.toDomain())
             } else {
-                Resource.Error(AppError.ApiError("Erro de api"))
+                val errorMsg = response.error ?: response.message ?: "Erro desconhecido"
+                Resource.Error(AppError.ApiError(errorMsg))
             }
         } catch (e: Exception){
             e.printStackTrace()
