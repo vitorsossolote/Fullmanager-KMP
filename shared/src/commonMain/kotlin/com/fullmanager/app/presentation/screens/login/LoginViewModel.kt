@@ -30,6 +30,7 @@ class LoginViewModel(
             LoginEvents.OnLoginClick -> onLoginClick()
             is LoginEvents.OnPasswordChange -> { _uiState.update { it.copy(password = event.password) }}
             is LoginEvents.OnUserNameChange -> { _uiState.update { it.copy(username = event.username) }}
+            LoginEvents.OnShowPasswordChange -> { _uiState.update { it.copy(showPassword = !it.showPassword) }}
         }
     }
 

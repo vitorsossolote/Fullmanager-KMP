@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.fullmanager.app.infrastructure.di.appModule
@@ -11,6 +12,7 @@ import com.fullmanager.app.infrastructure.di.dispatchersModule
 import com.fullmanager.app.infrastructure.di.networkModule
 import com.fullmanager.app.infrastructure.di.platformModule
 import com.fullmanager.app.src.presentation.navigation.AppNavigation
+import com.fullmanager.app.src.presentation.ui.composables.theme.FullmanagerTheme
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -25,7 +27,9 @@ class MainActivity : ComponentActivity() {
         }
 
         setContent {
-            AppNavigation()
+            FullmanagerTheme {
+                AppNavigation()
+            }
         }
     }
 }
